@@ -13,14 +13,17 @@ import jetbrains.buildServer.serverSide.InvalidProperty;
 import jetbrains.buildServer.serverSide.PropertiesProcessor;
 import jetbrains.buildServer.serverSide.RunType;
 import jetbrains.buildServer.serverSide.RunTypeRegistry;
+import jetbrains.buildServer.web.ContentSecurityPolicyConfig;
 import jetbrains.buildServer.web.openapi.PluginDescriptor;
 
 public class LeapworkTeamCityBridgeRunType extends RunType {
 	private final PluginDescriptor pluginDescriptor;
-
+	private final ContentSecurityPolicyConfig cspConfiguration;
+	
 	public LeapworkTeamCityBridgeRunType(@NotNull final RunTypeRegistry runTypeRegistry,
-			final PluginDescriptor pluginDescriptor) {
+			final PluginDescriptor pluginDescriptor, ContentSecurityPolicyConfig cspConfig) {
 		this.pluginDescriptor = pluginDescriptor;
+		this.cspConfiguration = cspConfig;
 		runTypeRegistry.registerRunType(this);
 	}
 
@@ -104,6 +107,9 @@ public class LeapworkTeamCityBridgeRunType extends RunType {
 		sb.append(parameters.get(StringConstants.ParameterName_ScheduleNames));
 		sb.append("\nSchedule Ids: ");
 		sb.append(parameters.get(StringConstants.ParameterName_ScheduleIds));
+		String urlValue = "http://".concat(parameters.get(StringConstants.ParameterName_Hostname))
+				+ ":".concat(parameters.get(StringConstants.ParameterName_Port)) + "/api/v4/schedules";
+		cspConfiguration.addDirectiveItems("connect-src", urlValue);
 		return sb.toString();
 	}
 
