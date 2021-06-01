@@ -29,20 +29,13 @@ LEAPWORK is a mighty automation testing system and now it can be used for runnin
 - Boolean field "leapworkWritePassedFlowKeyFrames" is not mandatory anymore.
 
 # Instruction
-Before adding Leapwork.Zip, update the following CSP header value via the internal properties.
-
-teamcity.web.header.Content-Security-Policy.adminUI.protectedValue=frame-ancestors 'self'; connect-src 'self' ws: wss: http://{controllerServer:port}/api/v4/schedules
-teamcity.web.header.Content-Security-Policy.protectedValue=frame-ancestors 'self'; connect-src 'self' ws: wss: http://{controllerServer:port}/api/v4/schedules
-
-Example: http://localhost:9001/api/v4/schedules (if Leapwork Controller running on localhost and port 9001)
-
-2. Add Build-Step "Leapwork Integration" to your project.
-3. Enter your LEAPWORK controller hostname or IP-address something like "win10-agent20" or "localhost".
-4. Enter your LEAPWORK controller API port, by default it is 9001.
-5. Enter time delay in seconds. When schedule is run, plugin will wait this time before trying to get schedule state. If schedule is still running, plugin will wait this time again. By default this value is 5 seconds.
-6. Select how plugin should set "Done" status value: to Success or Failed.
-7. Press button "Select Schedules" to get a list of all available schedules. Select schedules you want to run.
-8. Run your project and get results. Enjoy!
+1. Add Build-Step "Leapwork Integration" to your project.
+2. Enter your LEAPWORK controller hostname or IP-address something like "win10-agent20" or "localhost".
+3. Enter your LEAPWORK controller API port, by default it is 9001.
+4. Enter time delay in seconds. When schedule is run, plugin will wait this time before trying to get schedule state. If schedule is still running, plugin will wait this time again. By default this value is 5 seconds.
+5. Select how plugin should set "Done" status value: to Success or Failed.
+6. Press button "Select Schedules" to get a list of all available schedules. Select schedules you want to run.
+7. Run your project and get results. Enjoy!
 
 # Troubleshooting
 - If you catch an error "No such run [runId]!" after schedule starting, increase time delay parameter.
