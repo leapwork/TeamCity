@@ -6,7 +6,7 @@
     <version>4.0.1</version>
     <description>Integrates Leapwork codeless test automation with Teamcity. Run tests, get results, generate reports.</description>
     <download-url>https://github.com/leapwork/TeamCity.git/archive/master.zip</download-url>
-    <email>info-emea@leapwork.com</email>
+    <email> prioritysupport@leapwork.com</email>
     <vendor>
       <name>Leapwork</name>
       <url>https://leapwork.com</url>

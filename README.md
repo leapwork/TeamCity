@@ -1,5 +1,5 @@
 # Leapwork-Integration
-This is LEAPWORK plugin for Teamcity
+This is Leapwork plugin for Teamcity
 
 # More Details
 LEAPWORK is a mighty automation testing system and now it can be used for running [smoke, functional, acceptance] tests, generating reports and a lot more in Teamcity. You can easily configure integration directly in Teamcity enjoying UI friendly configuration page with easy connection and test suites selection.
