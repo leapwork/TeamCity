@@ -3,9 +3,6 @@ package com.leapwork.leapwork_integration;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlRootElement;
 
-/**
- * Created by User on 10.09.2018.
- */
 
 @XmlRootElement(name = "failure")
 public final class Failure

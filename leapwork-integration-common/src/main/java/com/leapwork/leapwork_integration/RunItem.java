@@ -5,9 +5,6 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
 
-/**
- * Created by User on 10.09.2018.
- */
 
 @XmlRootElement(name = "testcase")
 public final class RunItem

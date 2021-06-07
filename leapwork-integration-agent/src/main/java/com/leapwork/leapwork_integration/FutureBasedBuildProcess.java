@@ -13,7 +13,7 @@ import java.util.concurrent.*;
 abstract class FutureBasedBuildProcess implements BuildProcess, Callable<BuildFinishedStatus>
 {
     @NotNull protected final BuildProgressLogger logger;
-    private Future<BuildFinishedStatus> myFuture;
+    private Future<BuildFinishedStatus> runPluginExecution;
 
     public FutureBasedBuildProcess(@NotNull final BuildRunnerContext context) {
         this.logger = context.getBuild().getBuildLogger();
@@ -22,7 +22,7 @@ abstract class FutureBasedBuildProcess implements BuildProcess, Callable<BuildFi
     public void start() throws RunBuildException
     {
         try {
-            myFuture = Executors.newSingleThreadExecutor().submit(this);
+            runPluginExecution = Executors.newSingleThreadExecutor().submit(this);
         } catch (final RejectedExecutionException e) {
             logger.error("Failed to start build!");
             logger.exception(e);
@@ -32,12 +32,12 @@ abstract class FutureBasedBuildProcess implements BuildProcess, Callable<BuildFi
 
     public boolean isInterrupted()
     {
-        return myFuture.isCancelled() && isFinished();
+        return runPluginExecution.isCancelled() && isFinished();
     }
 
     public boolean isFinished()
     {
-        return myFuture.isDone();
+        return runPluginExecution.isDone();
     }
 
     protected abstract void cancelBuild();
@@ -46,14 +46,14 @@ abstract class FutureBasedBuildProcess implements BuildProcess, Callable<BuildFi
     {
         logger.message("Attempt to interrupt build process");
         cancelBuild();
-        myFuture.cancel(true);
+        runPluginExecution.cancel(true);
     }
 
     @NotNull
     public BuildFinishedStatus waitFor() throws RunBuildException
     {
         try {
-            final BuildFinishedStatus status = myFuture.get();
+            final BuildFinishedStatus status = runPluginExecution.get();
             return status;
         } catch (final InterruptedException e) {
             throw new RunBuildException(e);

@@ -3,9 +3,7 @@ package com.leapwork.leapwork_integration;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-/**
- * Created by User on 10.05.2017.
- */
+
 public class TeamcityServiceMessagesFormatter {
 
     private static TeamcityServiceMessagesFormatter teamcityServiceMessagesFormatter = null;

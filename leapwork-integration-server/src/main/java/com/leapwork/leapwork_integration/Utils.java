@@ -5,9 +5,6 @@ import com.google.gson.JsonElement;
 import java.util.Map;
 import java.util.UUID;
 
-/**
- * Created by User on 26.05.2017.
- */
 public class Utils {
 
 

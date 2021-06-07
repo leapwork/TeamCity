@@ -1,8 +1,6 @@
 package com.leapwork.leapwork_integration;
 
-/**
- * Created by User on 11.06.2017.
- */
+
 public final class InvalidSchedule {
 
     private String name;
