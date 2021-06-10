@@ -16,7 +16,7 @@ function GetSch() {
               {
 
                   (jQuery).ajax({
-                      url: address + "/api/v3/schedules",
+                      url: address + "/api/v4/schedules",
                       headers: {'AccessKey': accessKey},
                       type: 'GET',
                       dataType:"json",

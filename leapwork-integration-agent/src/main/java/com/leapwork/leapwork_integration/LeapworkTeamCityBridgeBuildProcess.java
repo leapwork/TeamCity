@@ -221,6 +221,7 @@ class LeapworkTeamCityBridgeBuildProcess extends FutureBasedBuildProcess {
                         case "Connecting":
                         case "Connected":
                         case "Running":
+                        case "IsProcessing":	
                             iter.remove();
                             break;
                         case "Passed":

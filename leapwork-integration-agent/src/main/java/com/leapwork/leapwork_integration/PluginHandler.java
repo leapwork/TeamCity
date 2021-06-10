@@ -611,14 +611,14 @@ public final class PluginHandler {
 			JsonElement jsonFlowStatus = flowInfo.get("Status");
 			String flowStatus = Utils.defaultStringIfNull(jsonFlowStatus, "NoStatus");
 
-			// EnvironmentInfo
-			JsonElement jsonEnvironmentInfo = jsonRunItem.get("EnvironmentInfo");
-			JsonObject environmentInfo = jsonEnvironmentInfo.getAsJsonObject();
-			JsonElement jsonEnvironmentId = environmentInfo.get("EnvironmentId");
+			// AgentInfo
+			JsonElement jsonAgentInfo = jsonRunItem.get("AgentInfo");
+			JsonObject AgentInfo = jsonAgentInfo.getAsJsonObject();
+			JsonElement jsonEnvironmentId = AgentInfo.get("EnvironmentId");
 			UUID environmentId = Utils.defaultUuidIfNull(jsonEnvironmentId, UUID.randomUUID());
-			JsonElement jsonEnvironmentTitle = environmentInfo.get("EnvironmentTitle");
+			JsonElement jsonEnvironmentTitle = AgentInfo.get("EnvironmentTitle");
 			String environmentTitle = Utils.defaultStringIfNull(jsonEnvironmentTitle);
-			JsonElement jsonEnvironmentConnectionType = environmentInfo.get("ConnectionType");
+			JsonElement jsonEnvironmentConnectionType = AgentInfo.get("ConnectionType");
 			String environmentConnectionType = Utils.defaultStringIfNull(jsonEnvironmentConnectionType, "Not defined");
 
 			JsonElement jsonRunId = jsonRunItem.get("AutomationRunId");
@@ -632,6 +632,7 @@ public final class PluginHandler {
 			if (flowStatus.contentEquals("Initializing") || flowStatus.contentEquals("Connecting")
 					|| flowStatus.contentEquals("Connected") || flowStatus.contentEquals("Running")
 					|| flowStatus.contentEquals("NoStatus")
+					|| flowStatus.contentEquals("IsProcessing")
 					|| (flowStatus.contentEquals("Passed") && !writePassedKeyframes)
 					|| (flowStatus.contentEquals("Done") && doneStatusAsSuccess && !writePassedKeyframes)) {
 				return runItem;

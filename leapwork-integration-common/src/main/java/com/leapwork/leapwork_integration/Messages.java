@@ -22,13 +22,13 @@ public final class Messages {
     public static final String CASE_INFORMATION = "RunItem: %1$s | Status: %2$s | Elapsed: %3$s";
     public static final String CASE_STACKTRACE_FORMAT = "%1$s - %2$s";
 
-    public static final String GET_ALL_AVAILABLE_SCHEDULES_URI = "%1$s/api/v3/schedules";
-    public static final String RUN_SCHEDULE_URI = "%1$s/api/v3/schedules/%2$s/runNow%3$s";
-    public static final String STOP_RUN_URI = "%1$s/api/v3/run/%2$s/stop";
-    public static final String GET_RUN_STATUS_URI = "%1$s/api/v3/run/%2$s/status";
-    public static final String GET_RUN_ITEMS_IDS_URI = "%1$s/api/v3/run/%2$s/runItemIds";
-    public static final String GET_RUN_ITEM_URI = "%1$s/api/v3/runItems/%2$s";
-    public static final String GET_RUN_ITEM_KEYFRAMES_URI = "%1$s/api/v3/runItems/%2$s/keyframes";
+    public static final String GET_ALL_AVAILABLE_SCHEDULES_URI = "%1$s/api/v4/schedules";
+    public static final String RUN_SCHEDULE_URI = "%1$s/api/v4/schedules/%2$s/runNow%3$s";
+    public static final String STOP_RUN_URI = "%1$s/api/v4/run/%2$s/stop";
+    public static final String GET_RUN_STATUS_URI = "%1$s/api/v4/run/%2$s/status";
+    public static final String GET_RUN_ITEMS_IDS_URI = "%1$s/api/v4/run/%2$s/runItemIds";
+    public static final String GET_RUN_ITEM_URI = "%1$s/api/v4/runItems/%2$s";
+    public static final String GET_RUN_ITEM_KEYFRAMES_URI = "%1$s/api/v4/runItems/%2$s/keyframes";
     public static final String TEAMCITY_WORKSPACE_VARIABLE = "WORKSPACE: %1$s";
 
 
