@@ -10,7 +10,7 @@
     <vendor>
       <name>Leapwork</name>
       <url>https://leapwork.com</url>
-      <logo>Plugin vendor logo URL</logo>
+      <logo>https://www.leapwork.com/hubfs/Leapwork%202020%20Assets/Leapwork-Zeplin%20(1).png</logo>
     </vendor>
   </info>
   <deployment use-separate-classloader="true"/>
