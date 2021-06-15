@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<teamcity-plugin xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:schemas-jetbrains-com:teamcity-plugin-v1-xml">
+  <info>
+    <name>leapwork-integration</name>
+    <display-name>leapwork-integration</display-name>
+    <version>4.0.1</version>
+    <description>Integrates Leapwork codeless test automation with Teamcity. Run tests, get results, generate reports.</description>
+    <download-url>https://github.com/leapwork/TeamCity.git/archive/master.zip</download-url>
+    <email> prioritysupport@leapwork.com</email>
+    <vendor>
+      <name>Leapwork</name>
+      <url>https://leapwork.com</url>
+      <logo>https://www.leapwork.com/hubfs/Leapwork%202020%20Assets/Leapwork-Zeplin%20(1).png</logo>
+    </vendor>
+  </info>
+  <deployment use-separate-classloader="true"/>
+</teamcity-plugin>
