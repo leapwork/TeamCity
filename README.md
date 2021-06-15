@@ -19,8 +19,8 @@ LEAPWORK is a mighty automation testing system and now it can be used for runnin
 - If you have an earlier version of the plugin in the directory, remove it.
 - Alternatively, use the Administration -> Plugins List -> Upload plugin zip -> Choose File -> Choose that zip-file -> Press Upload plugin zip
 
-# Update 3.1.1
-- For LEAPWORK version 2018.2.301
+# Update 4.0.1
+- For LEAPWORK version 2021.1
 - Fixed bug when schedules are executing in non-ordered way.
 - Now it is possible to insert a list of schedules to "Schedule Names" text box. List of names must be new line or comma separated.
   Be noticed that by clicking on any checkbox with schedule to select, using "Select Schedules" button, all non-existing or disabled schedules will be removed from "Schedule names" text box.
