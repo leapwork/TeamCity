@@ -18,17 +18,17 @@
       <dependency>
            <groupId>com.leapwork</groupId>
            <artifactId>leapwork-integration-agent</artifactId>
-           <version>0.0.1-SNAPSHOT</version>
+           <version>4.0.1-SNAPSHOT</version>
       </dependency>
       <dependency>
            <groupId>com.leapwork</groupId>
            <artifactId>leapwork-integration-common</artifactId>
-           <version>0.0.1-SNAPSHOT</version>
+           <version>4.0.1-SNAPSHOT</version>
       </dependency>
       <dependency>
            <groupId>com.leapwork</groupId>
            <artifactId>leapwork-integration-server</artifactId>
-           <version>0.0.1-SNAPSHOT</version>
+           <version>4.0.1-SNAPSHOT</version>
       </dependency>
   </dependencies>
   <build>
