@@ -17,10 +17,6 @@ Leapwork’s completely visual, no-code automation platform makes it easy for bu
 - If you have an earlier version of the plugin in the directory, remove it.
 - Alternatively, use the Administration -> Plugins List -> Upload plugin zip -> Choose File -> Choose that zip-file -> Press Upload plugin zip
 
-# Update 4.0.1
-- Leapwork version 2021.1 is now supported
-- Plugin is now using Leapwork API v4
-
 # Instruction
 1. Add Build-Step "Leapwork Integration" to your project
 2. Enter your Leapwork Controller hostname or IP-address, for example "win10-controller"
