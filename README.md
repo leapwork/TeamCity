@@ -1,8 +1,8 @@
 # Leapwork Integration
-This is Leapwork plugin for TeamCity
+Easily include Leapwork as part of the build definitions in TeamCity using the native plugin
 
 # More Details
-Leapwork’s completely visual, no-code automation platform makes it easy for business and IT users to automate repetitive processes, so enterprises can adopt and scale automation faster. For rapid results, at lower cost, and requiring fewer specialist resources than traditional automation approaches. You can easily configure integration directly in TeamCity enjoying UI friendly configuration page.
+Leapwork’s completely visual, no-code automation platform makes it easy for business and IT users to automate repetitive processes, so enterprises can adopt and scale automation faster. For rapid results, at lower cost, and requiring fewer specialist resources than traditional automation approaches.
 
 # Features:
  - Setup and test Leapwork connection in few clicks
