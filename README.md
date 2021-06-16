@@ -1,14 +1,14 @@
 # Leapwork Integration
-This is Leapwork plugin for Teamcity
+This is Leapwork plugin for TeamCity
 
 # More Details
-Leapwork’s visual, no-code automation platform makes it easy for business and IT users to automate repetitive processes, so enterprises can adopt and scale automation faster. You can easily configure integration directly in Teamcity enjoying UI friendly configuration page with easy connection and test suites selection.
+Leapwork’s completely visual, no-code automation platform makes it easy for business and IT users to automate repetitive processes, so enterprises can adopt and scale automation faster. For rapid results, at lower cost, and requiring fewer specialist resources than traditional automation approaches. You can easily configure integration directly in TeamCity enjoying UI friendly configuration page.
 
 # Features:
  - Setup and test Leapwork connection in few clicks
- - Run automated tests in your Teamcity build tasks
- - Automatically receive test results
- - Build status based tests results
+ - Run automation flows in your TeamCity build tasks
+ - Automatically receive results
+ - Build status based results
  - Write tests trace to build output log
  - Smart UI
  
@@ -28,7 +28,7 @@ Leapwork’s visual, no-code automation platform makes it easy for business and 
 2. Enter your Leapwork controller hostname or IP-address something like "win10-agent20" or "localhost".
 3. Enter your Leapwork controller API port, by default it is 9001.
 4. Enter time delay in seconds. When schedule is run, plugin will wait this time before trying to get schedule state. If schedule is still running, plugin will wait this time again. By default this value is 5 seconds.
-5. Select how plugin should set "Done" status value: to Success or Failed.
+5. Select how plugin should process "Done" status value: to Success or Failed.
 6. Press button "Select Schedules" to get a list of all available schedules. Select schedules you want to run.
 7. Run your project and get results. Enjoy!
 
