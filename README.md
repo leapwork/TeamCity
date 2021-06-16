@@ -2,7 +2,7 @@
 This is Leapwork plugin for Teamcity
 
 # More Details
-Leapwork is a mighty automation testing system and now it can be used for running [smoke, functional, acceptance] tests, generating reports and a lot more in Teamcity. You can easily configure integration directly in Teamcity enjoying UI friendly configuration page with easy connection and test suites selection.
+Leapwork has created the world’s most accessible automation platform. Through a visual, no-code approach, Leapwork makes it easy for business and IT users to automate repetitive processes, so enterprises can adopt and scale automation faster. Leapwork is used by more than 400 global enterprises across all industries, from banks and insurance companies to life science, government and aerospace. Clients include NASA, PayPal, BNP Paribas and Daimler. The company is headquartered in Copenhagen, Denmark, and has local offices across Europe, US and Asia. You can easily configure integration directly in Teamcity enjoying UI friendly configuration page with easy connection and test suites selection.
 
 # Features:
  - Setup and test Leapwork connection in few clicks
