@@ -9,13 +9,11 @@ Leapwork’s completely visual, no-code automation platform makes it easy for bu
  - Run automation flows in your TeamCity build tasks
  - Automatically receive results
  - Build status based results
- - Write tests trace to build output log
- - Smart UI
  
 # Installing
 - Use maven.
 - Command: mvn package 
-- Or simply install zip-file from the "target" folder: Copy the zip plugin package into the {TeamCity Data Directory}/plugins directory (Default path: C:\ProgramData\JetBrains\TeamCity\plugins). 
+- Or simply install Leapwork.zip file from the "Releases" section: Copy the Leapwork.zip plugin package into the {TeamCity Data Directory}/plugins directory (Default path: C:\ProgramData\JetBrains\TeamCity\plugins). 
 - If you have an earlier version of the plugin in the directory, remove it.
 - Alternatively, use the Administration -> Plugins List -> Upload plugin zip -> Choose File -> Choose that zip-file -> Press Upload plugin zip
 
@@ -24,12 +22,12 @@ Leapwork’s completely visual, no-code automation platform makes it easy for bu
 - Plugin is now using Leapwork API v4
 
 # Instruction
-1. Add Build-Step "Leapwork Integration" to your project.
-2. Enter your Leapwork controller hostname or IP-address something like "win10-agent20" or "localhost".
-3. Enter your Leapwork controller API port, by default it is 9001.
-4. Enter time delay in seconds. When schedule is run, plugin will wait this time before trying to get schedule state. If schedule is still running, plugin will wait this time again. By default this value is 5 seconds.
-5. Select how plugin should process "Done" status value: to Success or Failed.
-6. Press button "Select Schedules" to get a list of all available schedules. Select schedules you want to run.
+1. Add Build-Step "Leapwork Integration" to your project
+2. Enter your Leapwork Controller hostname or IP-address, for example "win10-controller"
+3. Enter your Leapwork Controller API port (by default it is 9001)
+4. Enter Time Delay in seconds. When schedule is running, plugin will wait this time before trying to get schedule state. If schedule is still running, plugin will wait this time again. By default this value is 5 seconds
+5. Select how plugin should process "Done" status value: to Success or Failed
+6. Press button "Select Schedules" to get a list of all available schedules, select schedules you want to run
 7. Run your project and get results. Enjoy!
 
 # Troubleshooting
