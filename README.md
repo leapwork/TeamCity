@@ -23,8 +23,9 @@ Leapwork’s completely visual, no-code automation platform makes it easy for bu
 3. Enter your Leapwork Controller API port (by default it is 9001)
 4. Enter Time Delay in seconds. When schedule is running, plugin will wait this time before trying to get schedule state. If schedule is still running, plugin will wait this time again. By default this value is 5 seconds
 5. Select how plugin should process "Done" status value: to Success or Failed
-6. Press button "Select Schedules" to get a list of all available schedules, select schedules you want to run
-7. Run your project and get results. Enjoy!
+6. Save the changes, to get available Schedules.
+7. Press button "Select Schedules" to get a list of all available schedules, select schedules you want to run
+8. Run your project and get results. Enjoy!
 
 # Troubleshooting
 - If you catch an error "No such run [runId]!" after schedule starting, increase time delay parameter.
