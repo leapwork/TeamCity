@@ -112,7 +112,7 @@
                     Press button "Select Schedules" and get all available schedules to run grouped by projects!
 		        </span>
 				<span class="smallNote">
-                   Warning: If you have identical schedule names, Please check schedules from the list or executioin will result in Failure.
+                   Warning: If you have identical schedule names, Please check schedules from the list or execution will result in Failure.
 		        </span>
                 <input type="button" class="btn btn-mini" id="selectButton" value="Select Schedules" onclick="GetSch()" style="position:relative; top: -100px; left: 430px;"/>
                 <div id="LeapworkContainer" class="popupDiv" style="display:none; position:absolute; top: 60px; left: 435px; min-width:250px; max-width:500px"></div>
