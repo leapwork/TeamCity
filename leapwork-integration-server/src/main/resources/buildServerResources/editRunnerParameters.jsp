@@ -110,7 +110,10 @@
                 <span class="error" id="error_${constants.parameterName_ScheduleNames}"></span>
                 <span class="smallNote">
                     Press button "Select Schedules" and get all available schedules to run grouped by projects!
-                </span>
+		        </span>
+				<span class="smallNote">
+                   Warning: If you have identical schedule names, Please check schedules from the list or executioin will result in Failure.
+		        </span>
                 <input type="button" class="btn btn-mini" id="selectButton" value="Select Schedules" onclick="GetSch()" style="position:relative; top: -100px; left: 430px;"/>
                 <div id="LeapworkContainer" class="popupDiv" style="display:none; position:absolute; top: 60px; left: 435px; min-width:250px; max-width:500px"></div>
             </td>
@@ -146,7 +149,17 @@
        this.executed = true;
      }
 
-    var css = 'ul.ul-treefree { padding-left:25px; font-weight: bold; } ul.ul-treefree ul { margin:0; padding-left:6px; } ul.ul-treefree li { position:relative; list-style:none outside none; border-left:solid 1px #999; margin:0; padding:0 0 0 19px; line-height:23px; } ul.ul-treefree li:before { content:""; display:block; border-bottom:solid 1px #999; position:absolute; width:18px; height:11px; left:0; top:0; } ul.ul-treefree li:last-child { border-left:0 none; } ul.ul-treefree li:last-child:before { border-left:solid 1px #999; } ul.ul-dropfree div.drop { width:11px; height:11px; position:absolute; z-index:10; top:6px; left:-6px; background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABYAAAALCAIAAAD0nuopAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAE1JREFUeNpinDlzJgNlgAWI09LScEnPmjWLoAImrHpIAkwMFAMqGMGC6X44GzkIsHoQooAFTTVQKdbAwxOigyMsmIh3MC7ASHnqBAgwAD4CGeOiDhXRAAAAAElFTkSuQmCC"); background-position:-11px 0; background-repeat:no-repeat; cursor:pointer;}',
+    var css = 'ul.ul-treefree { padding-left:25px; font-weight: bold; }
+	ul.ul-treefree ul { margin:0; padding-left:6px; } 
+	ul.ul-treefree li 
+	{ position:relative; list-style:none outside none; border-left:solid 1px #999; margin:0; padding:0 0 0 19px; line-height:23px; }
+	ul.ul-treefree li:before 
+	{ content:""; display:block; border-bottom:solid 1px #999; position:absolute; width:18px; height:11px; left:0; top:0; }
+	ul.ul-treefree li:last-child { border-left:0 none; } 
+	ul.ul-treefree li:last-child:before { border-left:solid 1px #999; }
+	ul.ul-dropfree div.drop { width:11px; height:11px; position:absolute; z-index:10; top:6px; left:-6px; background-image:
+	url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABYAAAALCAIAAAD0nuopAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAE1JREFUeNpinDlzJgNlgAWI09LScEnPmjWLoAImrHpIAkwMFAMqGMGC6X44GzkIsHoQooAFTTVQKdbAwxOigyMsmIh3MC7ASHnqBAgwAD4CGeOiDhXRAAAAAElFTkSuQmCC"); 
+	background-position:-11px 0; background-repeat:no-repeat; cursor:pointer;}',
     head = document.head || document.getElementsByTagName('head')[0],
     style = document.createElement('style');
 

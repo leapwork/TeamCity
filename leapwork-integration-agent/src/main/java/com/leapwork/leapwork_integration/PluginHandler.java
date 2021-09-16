@@ -200,10 +200,11 @@ public final class PluginHandler {
 						}
 
 						if (Title.contentEquals(rawSchedule)) {
-							if (schedulesIdTitleHashMap.containsKey(Id)) {
+							if (!schedulesIdTitleHashMap.containsKey(Id)) {
 								if (isEnabled) {
-									schedulesIdTitleHashMap.put(Id, rawSchedule);
-									logger.message(String.format(Messages.SCHEDULE_DETECTED, rawSchedule, Id));
+									invalidSchedules.add(new InvalidSchedule(rawSchedule,
+											String.format(Messages.SCHEDULE_IDENTICAL, Title)));
+									logger.warning((String.format(Messages.SCHEDULE_IDENTICAL, Title)));
 								} else {
 									invalidSchedules.add(new InvalidSchedule(rawSchedule,
 											String.format(Messages.SCHEDULE_DISABLED, Title, Id)));

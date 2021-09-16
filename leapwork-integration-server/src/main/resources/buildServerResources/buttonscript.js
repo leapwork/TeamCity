@@ -5,11 +5,11 @@ function GetSch() {
 
           if(!leapworkHostname || !leapworkPort)
           {
-            alert('"hostname or/and field is empty! Cannot connect to controller!"');
+			alert('"hostname or/and field is empty! Cannot connect to controller!"');
           }
           else
           {
-              const address = "http://" + leapworkHostname + ":" + leapworkPort;
+			  const address = "http://" + leapworkHostname + ":" + leapworkPort;
               const accessKey = document.getElementById("leapworkAccessKey").value;
 
               if(document.getElementById('LeapworkContainer').innerHTML == "")
@@ -46,7 +46,6 @@ function GetSch() {
                             {
                                 schId.push(json[i].Id);
                                 schName.push(json[i].Title);
-
                                 let schli = document.createElement('li');
                                 let chbx = document.createElement('input');
                                 chbx.type = 'checkbox';
@@ -96,6 +95,7 @@ function GetSch() {
                                      let existingTests = new Array();
                                      existingTests = TestNames.value.split(/\r\n|\n|\s+,\s+|,\s+|\s+,|,/);
 
+									
                                      if (TestNames.value != null && TestIds.value != null) {
                                             for (let i = 0; i < existingTests.length; i++) {
                                                 for (let j = 0; j < boxes.length; j++)
@@ -109,9 +109,10 @@ function GetSch() {
                                                 }
                                             }
 
-                                     }
-
-                                     (jQuery)("#LeapworkContainer input:checkbox").on("change", function ()
+                                     } 
+									 
+									
+									(jQuery)("#LeapworkContainer input:checkbox").on("change", function ()
                                      {
                                          let NamesArray = new Array();
                                          let IdsArray = new Array();
