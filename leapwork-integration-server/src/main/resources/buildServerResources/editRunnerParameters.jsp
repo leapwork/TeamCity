@@ -149,7 +149,7 @@
        this.executed = true;
      }
 
-    var css = 'ul.ul-treefree { padding-left:25px; font-weight: bold; }
+    var css = `ul.ul-treefree { padding-left:25px; font-weight: bold; }
 	ul.ul-treefree ul { margin:0; padding-left:6px; } 
 	ul.ul-treefree li 
 	{ position:relative; list-style:none outside none; border-left:solid 1px #999; margin:0; padding:0 0 0 19px; line-height:23px; }
@@ -159,8 +159,8 @@
 	ul.ul-treefree li:last-child:before { border-left:solid 1px #999; }
 	ul.ul-dropfree div.drop { width:11px; height:11px; position:absolute; z-index:10; top:6px; left:-6px; background-image:
 	url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABYAAAALCAIAAAD0nuopAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAE1JREFUeNpinDlzJgNlgAWI09LScEnPmjWLoAImrHpIAkwMFAMqGMGC6X44GzkIsHoQooAFTTVQKdbAwxOigyMsmIh3MC7ASHnqBAgwAD4CGeOiDhXRAAAAAElFTkSuQmCC"); 
-	background-position:-11px 0; background-repeat:no-repeat; cursor:pointer;}',
-    head = document.head || document.getElementsByTagName('head')[0],
+	background-position:-11px 0; background-repeat:no-repeat; cursor:pointer;}`,   
+	head = document.head || document.getElementsByTagName('head')[0],
     style = document.createElement('style');
 
     style.type = 'text/css';

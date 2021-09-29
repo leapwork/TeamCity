@@ -101,10 +101,14 @@ function GetSch() {
                                                 for (let j = 0; j < boxes.length; j++)
                                                 {
 
-                                                    if (existingTests[i] == boxes[j].getAttributeNode('name').value)
+                                                    if (existingTests[i] == boxes[j].getAttributeNode('name').value &&
+                                                    		!(jQuery)(boxes[j]).prop('checked'))
                                                      {
-                                                        if(boxes[j].disabled == false)
+                                                        if(boxes[j].disabled == false){
                                                             (jQuery)(boxes[j]).prop('checked', 'checked');
+                                                        
+                                                        break;
+                                                     }
                                                      }
                                                 }
                                             }
