@@ -160,7 +160,7 @@ public final class PluginHandler {
 			ArrayList<InvalidSchedule> invalidSchedules) throws Exception {
 
 		LinkedHashMap<UUID, String> schedulesIdTitleHashMap = new LinkedHashMap<>();
-		ArrayList<String> tempList = new ArrayList<>(rawScheduleList);
+		ArrayList<String> tempRawScheduleList = new ArrayList<>(rawScheduleList);
 		String scheduleListUri = String.format(Messages.GET_ALL_AVAILABLE_SCHEDULES_URI, controllerApiHttpAddress);
 		Collections.sort(rawScheduleList);
 		try {
@@ -190,9 +190,9 @@ public final class PluginHandler {
 
 						if (Id.toString().contentEquals(rawSchedule)) {
 							if (!schedulesIdTitleHashMap.containsValue(Title)) {
-								if (tempList.contains(Id.toString())) {
-									tempList.remove(Id.toString());
-									tempList.remove(Title);
+								if (tempRawScheduleList.contains(Id.toString())) {
+									tempRawScheduleList.remove(Id.toString());
+									tempRawScheduleList.remove(Title);
 									if (isEnabled) {
 										schedulesIdTitleHashMap.put(Id, Title);
 										logger.message(String.format(Messages.SCHEDULE_DETECTED, Title, rawSchedule));
@@ -208,9 +208,9 @@ public final class PluginHandler {
 
 						if (Title.contentEquals(rawSchedule)) {
 							if (!schedulesIdTitleHashMap.containsKey(Id)) {
-								if (tempList.contains(Title)) {
-									tempList.remove(Id.toString());
-									tempList.remove(Title);
+								if (tempRawScheduleList.contains(Title)) {
+									tempRawScheduleList.remove(Id.toString());
+									tempRawScheduleList.remove(Title);
 									if (isEnabled) {
 										schedulesIdTitleHashMap.put(Id, Title);
 										logger.message(String.format(Messages.SCHEDULE_DETECTED, Title, rawSchedule));
