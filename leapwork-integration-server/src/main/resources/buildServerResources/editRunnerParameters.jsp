@@ -50,7 +50,7 @@
               <th><label>Time Delay (in seconds):</label></th>
               <td>
                    <props:textProperty name="${constants.parameterName_TimeDelay}" className="longField"/>
-                   <span class="smallNote">How much time to wait before trying to get schedule state. If schedule is still running, plugin will wait again! By default it is 5 seconds.</span>
+                   <span class="smallNote">How much time to wait before trying to get schedule state. If schedule is still running, plugin will wait again. By default it is 5 seconds.</span>
                    <span class="error" id="error_${constants.parameterName_TimeDelay}"></span></td>
               </td>
          </tr>
