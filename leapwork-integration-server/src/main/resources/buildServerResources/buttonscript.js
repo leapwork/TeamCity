@@ -5,7 +5,7 @@ function GetSch() {
 
           if(!leapworkHostname || !leapworkPort)
           {
-			alert('"hostname or/and field is empty! Cannot connect to controller"');
+			alert('"hostname or/and field is empty, Cannot connect to controller"');
           }
           else
           {
@@ -138,7 +138,7 @@ function GetSch() {
                       error: function(XMLHttpRequest, textStatus, errorThrown)
                       {
                                 alert(
-                                "Error occurred! Cannot get the list of Schedules\n" +
+                                "Error occurred, Cannot get the list of Schedules\n" +
                                 "Status: " + textStatus + "\n" +
                                 "Error: " + errorThrown + "\n" +
                                 "This may occur because of the next reasons:\n" +
