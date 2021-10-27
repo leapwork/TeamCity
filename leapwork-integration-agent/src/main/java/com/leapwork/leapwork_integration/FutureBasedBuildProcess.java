@@ -24,7 +24,7 @@ abstract class FutureBasedBuildProcess implements BuildProcess, Callable<BuildFi
         try {
             runPluginExecution = Executors.newSingleThreadExecutor().submit(this);
         } catch (final RejectedExecutionException e) {
-            logger.error("Failed to start build!");
+            logger.error("Failed to start build");
             logger.exception(e);
             throw new RunBuildException(e);
         }

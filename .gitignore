@@ -23,4 +23,7 @@
 hs_err_pid*
 .project
 .settings
-/build/
+/build/target
+/target/
+target
+*/target/*

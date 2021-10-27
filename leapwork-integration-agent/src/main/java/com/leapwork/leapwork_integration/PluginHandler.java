@@ -160,10 +160,11 @@ public final class PluginHandler {
 			ArrayList<InvalidSchedule> invalidSchedules) throws Exception {
 
 		LinkedHashMap<UUID, String> schedulesIdTitleHashMap = new LinkedHashMap<>();
-
+		ArrayList<String> tempRawScheduleList = new ArrayList<>(rawScheduleList);
 		String scheduleListUri = String.format(Messages.GET_ALL_AVAILABLE_SCHEDULES_URI, controllerApiHttpAddress);
-
+		Collections.sort(rawScheduleList);
 		try {
+
 			Response response = client.prepareGet(scheduleListUri).setHeader("AccessKey", accessKey).execute().get();
 
 			switch (response.getStatusCode()) {
@@ -171,9 +172,12 @@ public final class PluginHandler {
 				JsonParser parser = new JsonParser();
 				JsonArray jsonScheduleList = parser.parse(response.getResponseBody()).getAsJsonArray();
 
+			
 				for (String rawSchedule : rawScheduleList) {
+					
 					boolean successfullyMapped = false;
 					for (JsonElement jsonScheduleElement : jsonScheduleList) {
+
 						JsonObject jsonSchedule = jsonScheduleElement.getAsJsonObject();
 
 						if (jsonSchedule.get("Type").getAsString().contentEquals("TemporaryScheduleInfo"))
@@ -186,27 +190,34 @@ public final class PluginHandler {
 
 						if (Id.toString().contentEquals(rawSchedule)) {
 							if (!schedulesIdTitleHashMap.containsValue(Title)) {
-								if (isEnabled) {
-									schedulesIdTitleHashMap.put(Id, Title);
-									logger.message(String.format(Messages.SCHEDULE_DETECTED, Title, rawSchedule));
-								} else {
-									invalidSchedules.add(new InvalidSchedule(rawSchedule,
-											String.format(Messages.SCHEDULE_DISABLED, Title, Id)));
-									logger.warning((String.format(Messages.SCHEDULE_DISABLED, Title, Id)));
+								if (tempRawScheduleList.contains(Id.toString())) {
+									tempRawScheduleList.remove(Id.toString());
+									tempRawScheduleList.remove(Title);
+									if (isEnabled) {
+										schedulesIdTitleHashMap.put(Id, Title);
+										logger.message(String.format(Messages.SCHEDULE_DETECTED, Title, rawSchedule));
+									} else {
+										invalidSchedules.add(new InvalidSchedule(rawSchedule,
+												String.format(Messages.SCHEDULE_DISABLED, Title, Id)));
+										logger.warning((String.format(Messages.SCHEDULE_DISABLED, Title, Id)));
+									}
 								}
 							}
-
 							successfullyMapped = true;
 						}
 
 						if (Title.contentEquals(rawSchedule)) {
 							if (!schedulesIdTitleHashMap.containsKey(Id)) {
-								if (isEnabled) {
-									schedulesIdTitleHashMap.put(Id, rawSchedule);
-									logger.message(String.format(Messages.SCHEDULE_DETECTED, rawSchedule, Id));
-								} else {
-									invalidSchedules.add(new InvalidSchedule(rawSchedule,
-											String.format(Messages.SCHEDULE_DISABLED, Title, Id)));
+								if (tempRawScheduleList.contains(Title)) {
+									tempRawScheduleList.remove(Id.toString());
+									tempRawScheduleList.remove(Title);
+									if (isEnabled) {
+										schedulesIdTitleHashMap.put(Id, Title);
+										logger.message(String.format(Messages.SCHEDULE_DETECTED, Title, rawSchedule));
+									} else {
+										invalidSchedules.add(new InvalidSchedule(rawSchedule,
+												String.format(Messages.SCHEDULE_DISABLED, Title, Id)));
+									}
 								}
 							}
 
@@ -237,6 +248,7 @@ public final class PluginHandler {
 				OnFailedToGetScheduleTitleIdMap(null, errorMessage.toString(), logger);
 
 			}
+
 		} catch (ConnectException | UnknownHostException e) {
 			String connectionErrorMessage = String.format(Messages.COULD_NOT_CONNECT_TO, e.getMessage());
 			OnFailedToGetScheduleTitleIdMap(e, connectionErrorMessage, logger);
@@ -631,8 +643,7 @@ public final class PluginHandler {
 
 			if (flowStatus.contentEquals("Initializing") || flowStatus.contentEquals("Connecting")
 					|| flowStatus.contentEquals("Connected") || flowStatus.contentEquals("Running")
-					|| flowStatus.contentEquals("NoStatus")
-					|| flowStatus.contentEquals("IsProcessing")
+					|| flowStatus.contentEquals("NoStatus") || flowStatus.contentEquals("IsProcessing")
 					|| (flowStatus.contentEquals("Passed") && !writePassedKeyframes)
 					|| (flowStatus.contentEquals("Done") && doneStatusAsSuccess && !writePassedKeyframes)) {
 				return runItem;
