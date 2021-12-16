@@ -622,7 +622,16 @@ public final class PluginHandler {
 			String flowTitle = Utils.defaultStringIfNull(jsonFlowTitle);
 			JsonElement jsonFlowStatus = flowInfo.get("Status");
 			String flowStatus = Utils.defaultStringIfNull(jsonFlowStatus, "NoStatus");
-
+			
+			//AgentInfo
+			JsonElement jsonAgentInfo = jsonRunItem.get("AgentInfo");
+			JsonObject AgentInfo = jsonAgentInfo.getAsJsonObject();
+			JsonElement jsonAgentId = AgentInfo.get("AgentId");
+			UUID agentId = Utils.defaultUuidIfNull(jsonAgentId, UUID.randomUUID());
+			JsonElement jsonAgentTitle = AgentInfo.get("AgentTitle");
+			String agentTitle = Utils.defaultStringIfNull(jsonAgentTitle);
+			JsonElement jsonAgentConnectionType = AgentInfo.get("ConnectionType");
+			String agentConnectionType = Utils.defaultStringIfNull(jsonAgentConnectionType, "Not defined");
 			
 			JsonElement jsonRunId = jsonRunItem.get("AutomationRunId");
 			UUID runId = Utils.defaultUuidIfNull(jsonRunId, UUID.randomUUID());
@@ -640,7 +649,7 @@ public final class PluginHandler {
 				return runItem;
 			} else {
 				Failure keyframes = getRunItemKeyFrames(client, controllerApiHttpAddress, accessKey, runItemId, runItem,
-						scheduleTitle, flowTitle, logger);
+						scheduleTitle, agentTitle, logger);
 				runItem.failure = keyframes;
 				return runItem;
 			}
@@ -683,7 +692,7 @@ public final class PluginHandler {
 	}
 
 	public Failure getRunItemKeyFrames(AsyncHttpClient client, String controllerApiHttpAddress, String accessKey,
-			UUID runItemId, RunItem runItem, String scheduleTitle, String flowTitle,
+			UUID runItemId, RunItem runItem, String scheduleTitle, String agentTitle,
 			final BuildProgressLogger logger) throws Exception {
 
 		String uri = String.format(Messages.GET_RUN_ITEM_KEYFRAMES_URI, controllerApiHttpAddress, runItemId.toString());
@@ -722,8 +731,8 @@ public final class PluginHandler {
 
 				}
 
-				appendLine(fullKeyframes, "FlowTitle: ");
-				fullKeyframes.append(flowTitle);
+				appendLine(fullKeyframes, "AgentTitle: ");
+				fullKeyframes.append(agentTitle);
 				appendLine(fullKeyframes, "Schedule: ");
 				fullKeyframes.append(scheduleTitle);
 				
