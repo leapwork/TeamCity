@@ -622,17 +622,17 @@ public final class PluginHandler {
 			String flowTitle = Utils.defaultStringIfNull(jsonFlowTitle);
 			JsonElement jsonFlowStatus = flowInfo.get("Status");
 			String flowStatus = Utils.defaultStringIfNull(jsonFlowStatus, "NoStatus");
-
-			// AgentInfo
+			
+			//AgentInfo
 			JsonElement jsonAgentInfo = jsonRunItem.get("AgentInfo");
 			JsonObject AgentInfo = jsonAgentInfo.getAsJsonObject();
-			JsonElement jsonEnvironmentId = AgentInfo.get("EnvironmentId");
-			UUID environmentId = Utils.defaultUuidIfNull(jsonEnvironmentId, UUID.randomUUID());
-			JsonElement jsonEnvironmentTitle = AgentInfo.get("EnvironmentTitle");
-			String environmentTitle = Utils.defaultStringIfNull(jsonEnvironmentTitle);
-			JsonElement jsonEnvironmentConnectionType = AgentInfo.get("ConnectionType");
-			String environmentConnectionType = Utils.defaultStringIfNull(jsonEnvironmentConnectionType, "Not defined");
-
+			JsonElement jsonAgentId = AgentInfo.get("AgentId");
+			UUID agentId = Utils.defaultUuidIfNull(jsonAgentId, UUID.randomUUID());
+			JsonElement jsonAgentTitle = AgentInfo.get("AgentTitle");
+			String agentTitle = Utils.defaultStringIfNull(jsonAgentTitle);
+			JsonElement jsonAgentConnectionType = AgentInfo.get("ConnectionType");
+			String agentConnectionType = Utils.defaultStringIfNull(jsonAgentConnectionType, "Not defined");
+			
 			JsonElement jsonRunId = jsonRunItem.get("AutomationRunId");
 			UUID runId = Utils.defaultUuidIfNull(jsonRunId, UUID.randomUUID());
 
@@ -649,7 +649,7 @@ public final class PluginHandler {
 				return runItem;
 			} else {
 				Failure keyframes = getRunItemKeyFrames(client, controllerApiHttpAddress, accessKey, runItemId, runItem,
-						scheduleTitle, environmentTitle, logger);
+						scheduleTitle, agentTitle, logger);
 				runItem.failure = keyframes;
 				return runItem;
 			}
@@ -692,7 +692,7 @@ public final class PluginHandler {
 	}
 
 	public Failure getRunItemKeyFrames(AsyncHttpClient client, String controllerApiHttpAddress, String accessKey,
-			UUID runItemId, RunItem runItem, String scheduleTitle, String environmentTitle,
+			UUID runItemId, RunItem runItem, String scheduleTitle, String agentTitle,
 			final BuildProgressLogger logger) throws Exception {
 
 		String uri = String.format(Messages.GET_RUN_ITEM_KEYFRAMES_URI, controllerApiHttpAddress, runItemId.toString());
@@ -710,26 +710,32 @@ public final class PluginHandler {
 						runItem.getCaseStatus(), runItem.getElapsedTime()));
 
 				for (JsonElement jsonKeyFrame : jsonKeyframes) {
+					String keyFrame = "";
 					String level = Utils.defaultStringIfNull(jsonKeyFrame.getAsJsonObject().get("Level"), "Trace");
 					if (!level.contentEquals("") && !level.contentEquals("Trace")) {
 						String keyFrameTimeStamp = jsonKeyFrame.getAsJsonObject().get("Timestamp").getAsJsonObject()
 								.get("Value").getAsString();
 						String keyFrameLogMessage = jsonKeyFrame.getAsJsonObject().get("LogMessage").getAsString();
-						String keyFrame = String.format(Messages.CASE_STACKTRACE_FORMAT, keyFrameTimeStamp,
-								keyFrameLogMessage);
+						JsonElement keyFrameBlockTitle = jsonKeyFrame.getAsJsonObject().get("BlockTitle");
+						if (keyFrameBlockTitle != null) {
+							keyFrame = String.format(Messages.CASE_STACKTRACE_FORMAT_BLOCKTITLE, keyFrameTimeStamp,
+									keyFrameBlockTitle.getAsString(), keyFrameLogMessage);
+						} else {
+							keyFrame = String.format(Messages.CASE_STACKTRACE_FORMAT, keyFrameTimeStamp,
+									keyFrameLogMessage);
+						}
+												
 						appendLine(fullKeyframes, keyFrame);
-						// fullKeyframes.append("&#xA;");
+
 					}
 
 				}
 
-				appendLine(fullKeyframes, "Environment: ");
-				fullKeyframes.append(environmentTitle);
+				appendLine(fullKeyframes, "AgentTitle: ");
+				fullKeyframes.append(agentTitle);
 				appendLine(fullKeyframes, "Schedule: ");
 				fullKeyframes.append(scheduleTitle);
-				// logger.warning("Environment: " + environmentTitle);
-				// logger.warning("Schedule: " + scheduleTitle);
-
+				
 				return new Failure(fullKeyframes.toString());
 			} else {
 				logger.error(Messages.FAILED_TO_PARSE_RESPONSE_KEYFRAME_JSON_ARRAY);
