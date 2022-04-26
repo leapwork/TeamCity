@@ -41,6 +41,7 @@ public final class PluginHandler {
 	private static final String scheduleSeparatorRegex = "\r\n|\n|\\s+,\\s+|,\\s+|\\s+,|,";
 	private static final String variableSeparatorRegex = "\\s+:\\s+|:\\s+|\\s+:|:";
 	private static final String STRING_EMPTY = "";
+	public HashMap<String, String> successMessage = new HashMap<>(); 
 
 	private PluginHandler() {
 	}
@@ -172,9 +173,8 @@ public final class PluginHandler {
 				JsonParser parser = new JsonParser();
 				JsonArray jsonScheduleList = parser.parse(response.getResponseBody()).getAsJsonArray();
 
-			
 				for (String rawSchedule : rawScheduleList) {
-					
+
 					boolean successfullyMapped = false;
 					for (JsonElement jsonScheduleElement : jsonScheduleList) {
 
@@ -646,10 +646,21 @@ public final class PluginHandler {
 					|| flowStatus.contentEquals("NoStatus") || flowStatus.contentEquals("IsProcessing")
 					|| (flowStatus.contentEquals("Passed") && !writePassedKeyframes)
 					|| (flowStatus.contentEquals("Done") && doneStatusAsSuccess && !writePassedKeyframes)) {
+				
 				return runItem;
-			} else {
-				Failure keyframes = getRunItemKeyFrames(client, controllerApiHttpAddress, accessKey, runItemId, runItem,
+			} 
+			else if ((flowStatus.contentEquals("Passed") && writePassedKeyframes) || 
+					(flowStatus.contentEquals("Done") && doneStatusAsSuccess && writePassedKeyframes)) {
+			String keyf = getRunItemKeyFrames(client, controllerApiHttpAddress, accessKey, runItemId, runItem,
 						scheduleTitle, agentTitle, logger);
+			successMessage.put(flowTitle, keyf);
+			return runItem;
+			}
+				
+			else {
+				String keyf = getRunItemKeyFrames(client, controllerApiHttpAddress, accessKey, runItemId, runItem,
+						scheduleTitle, agentTitle, logger);
+				Failure keyframes = new Failure(keyf);
 				runItem.failure = keyframes;
 				return runItem;
 			}
@@ -691,9 +702,9 @@ public final class PluginHandler {
 		}
 	}
 
-	public Failure getRunItemKeyFrames(AsyncHttpClient client, String controllerApiHttpAddress, String accessKey,
-			UUID runItemId, RunItem runItem, String scheduleTitle, String agentTitle,
-			final BuildProgressLogger logger) throws Exception {
+	public String getRunItemKeyFrames(AsyncHttpClient client, String controllerApiHttpAddress, String accessKey,
+			UUID runItemId, RunItem runItem, String scheduleTitle, String agentTitle, final BuildProgressLogger logger)
+			throws Exception {
 
 		String uri = String.format(Messages.GET_RUN_ITEM_KEYFRAMES_URI, controllerApiHttpAddress, runItemId.toString());
 
@@ -705,7 +716,7 @@ public final class PluginHandler {
 			JsonArray jsonKeyframes = TryParseKeyframeJson(response.getResponseBody(), logger);
 
 			if (jsonKeyframes != null) {
-				StringBuilder fullKeyframes = new StringBuilder(Messages.CASE_CONSOLE_LOG_SEPARATOR);
+				StringBuilder fullKeyframes = new StringBuilder();
 				appendLine(fullKeyframes, String.format(Messages.CASE_INFORMATION, runItem.getCaseName(),
 						runItem.getCaseStatus(), runItem.getElapsedTime()));
 
@@ -724,7 +735,7 @@ public final class PluginHandler {
 							keyFrame = String.format(Messages.CASE_STACKTRACE_FORMAT, keyFrameTimeStamp,
 									keyFrameLogMessage);
 						}
-												
+
 						appendLine(fullKeyframes, keyFrame);
 
 					}
@@ -735,11 +746,11 @@ public final class PluginHandler {
 				fullKeyframes.append(agentTitle);
 				appendLine(fullKeyframes, "Schedule: ");
 				fullKeyframes.append(scheduleTitle);
-				
-				return new Failure(fullKeyframes.toString());
+
+				return fullKeyframes.toString();
 			} else {
 				logger.error(Messages.FAILED_TO_PARSE_RESPONSE_KEYFRAME_JSON_ARRAY);
-				return new Failure(Messages.FAILED_TO_PARSE_RESPONSE_KEYFRAME_JSON_ARRAY);
+				return Messages.FAILED_TO_PARSE_RESPONSE_KEYFRAME_JSON_ARRAY;
 			}
 
 		case 401:
