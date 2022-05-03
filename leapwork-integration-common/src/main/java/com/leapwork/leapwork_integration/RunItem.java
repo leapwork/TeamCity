@@ -19,7 +19,7 @@ public final class RunItem
     private String classname;
     @XmlElement
     public Failure failure;
-
+    
     public RunItem() { }
 
     public RunItem(String caseTitle, String caseStatus, double elapsed, String schedule)
