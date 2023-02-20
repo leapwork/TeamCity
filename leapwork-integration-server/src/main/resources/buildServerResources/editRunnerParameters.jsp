@@ -11,7 +11,7 @@
 
 
 
-<l:settingsGroup title="Runner Parameters">
+<l:settingsGroup title="Runner Parameters">       
 
         <tr>
                 <th><label>Leapwork Controller Hostname:</label></th>
@@ -53,6 +53,15 @@
                    <span class="smallNote">How much time to wait before trying to get schedule state. If schedule is still running, plugin will wait again. By default it is 5 seconds.</span>
                    <span class="error" id="error_${constants.parameterName_TimeDelay}"></span></td>
               </td>
+         </tr>
+          <tr>
+          
+           <th></th>
+                     <td>
+                             <props:checkboxProperty name="${constants.parameterName_HTTPS}" />
+                              <label for="${constants.parameterName_HTTPS}">Enable HTTPS Protocol</label>
+                             <span class="error" id="error_${constants.parameterName_HTTPS}"></span></td>
+                     </td>              
          </tr>
          <tr>
                  <th><label for="${constants.parameterName_DoneStatus}">Done status as: </label></th>

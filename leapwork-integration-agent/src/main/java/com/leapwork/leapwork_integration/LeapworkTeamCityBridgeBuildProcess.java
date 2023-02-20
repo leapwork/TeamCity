@@ -56,8 +56,9 @@ class LeapworkTeamCityBridgeBuildProcess extends FutureBasedBuildProcess {
 		String leapworkReport = getParameter(StringConstants.ParameterName_Report);
 		String leapworkPassedKeyframes = getParameter(StringConstants.ParameterName_PassedKeyframes);
 		String leapworkScheduleVariables = getParameter(StringConstants.ParameterName_ScheduleVariables);
-
-		String controllerApiHttpAddress = pluginHandler.getControllerApiHttpAdderess(leapworkHostname, leapworkPort,
+        String leapworkHttps = getParameter(StringConstants.ParameterName_HTTPS);
+        boolean enableHttps=Utils.defaultBooleanIfNull(leapworkHttps, false);
+		String controllerApiHttpAddress = pluginHandler.getControllerApiHttpAdderess(leapworkHostname, leapworkPort,enableHttps,
 				logger);
 		ArrayList<InvalidSchedule> invalidSchedules = new ArrayList<>();
 		final HashMap<String, Integer> repeatedNameMapCounter = new HashMap<>();
@@ -67,7 +68,7 @@ class LeapworkTeamCityBridgeBuildProcess extends FutureBasedBuildProcess {
 		int timeDelay = pluginHandler.getTimeDelay(leapworkDelay, logger);
 		String reportFileName = pluginHandler.getReportFileName(leapworkReport, "report.xml");
 		boolean isDoneStatusAsSuccess = pluginHandler.isDoneStatusAsSuccess(leapworkDoneStatusAs);
-		boolean writePassedKeyframes = Utils.defaultBooleanIfNull(leapworkPassedKeyframes, false);
+		boolean writePassedKeyframes = Utils.defaultBooleanIfNull(leapworkPassedKeyframes, false);		
 
 		String scheduleVariablesRequestPart = pluginHandler.getScheduleVariablesRequestPart(leapworkScheduleVariables,
 				logger);

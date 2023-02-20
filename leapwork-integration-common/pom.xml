@@ -4,7 +4,7 @@
   <parent>
     <artifactId>leapwork-integration</artifactId>
     <groupId>com.leapwork</groupId>
-    <version>4.0.3-SNAPSHOT</version>
+    <version>4.0.4-SNAPSHOT</version>
   </parent>
   <dependencies>
 <!-- https://mvnrepository.com/artifact/javax.xml.bind/jaxb-api -->

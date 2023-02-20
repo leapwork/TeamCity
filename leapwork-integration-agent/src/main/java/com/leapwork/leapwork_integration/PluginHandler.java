@@ -134,24 +134,45 @@ public final class PluginHandler {
 		return doneStatusAs.contentEquals("Success");
 	}
 
-	public String getControllerApiHttpAdderess(String hostname, String rawPort, final BuildProgressLogger logger) {
+	public String getControllerApiHttpAdderess(String hostname, String rawPort, boolean enableHttps, final BuildProgressLogger logger) {
 		StringBuilder stringBuilder = new StringBuilder();
-		int port = getPortNumber(rawPort, logger);
-		stringBuilder.append("http://").append(hostname).append(":").append(port);
+		int port = getPortNumber(rawPort, enableHttps, logger);
+		if (enableHttps)
+			stringBuilder.append("https://").append(hostname).append(":").append(port);
+		else
+			stringBuilder.append("http://").append(hostname).append(":").append(port);
 		return stringBuilder.toString();
 	}
 
-	private int getPortNumber(String rawPortStr, final BuildProgressLogger logger) {
-		int defaultPortNumber = 9001;
+	private int getPortNumber(String rawPortStr, boolean enableHttps, final BuildProgressLogger logger) {
+		int defaultPortNumber;
+		int defaultHttpPortNumber = 9001;
+		int defaultHttpsPortNumber = 9002;
 		try {
 			if (!rawPortStr.isEmpty() || !"".equals(rawPortStr))
 				return Integer.parseInt(rawPortStr);
 			else {
-				logger.warning(String.format(Messages.PORT_NUMBER_IS_INVALID, defaultPortNumber));
+				if(enableHttps) {
+					defaultPortNumber = defaultHttpsPortNumber;
+					logger.warning(String.format(Messages.PORT_NUMBER_IS_INVALID, defaultPortNumber));
+				}
+				else { 
+					defaultPortNumber = defaultHttpPortNumber;
+					logger.warning(String.format(Messages.PORT_NUMBER_IS_INVALID, defaultPortNumber));
+					}
 				return defaultPortNumber;
 			}
 		} catch (Exception e) {
-			logger.warning(String.format(Messages.PORT_NUMBER_IS_INVALID, defaultPortNumber));
+			
+			if(enableHttps) {
+				defaultPortNumber = defaultHttpsPortNumber;
+				logger.warning(String.format(Messages.PORT_NUMBER_IS_INVALID, defaultPortNumber));
+
+			}
+			else { 
+				defaultPortNumber = defaultHttpPortNumber;
+				logger.warning(String.format(Messages.PORT_NUMBER_IS_INVALID, defaultPortNumber));
+				}
 			return defaultPortNumber;
 		}
 	}

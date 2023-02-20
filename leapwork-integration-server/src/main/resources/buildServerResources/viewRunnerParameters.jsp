@@ -4,12 +4,13 @@
       <jsp:useBean id="constants" class="com.leapwork.leapwork_integration.StringConstants" />
 
       <div class="parameter">
-
+         
           Leapwork controller hostname: <strong><props:displayValue name="${constants.ParameterName_Hostname}" /></strong>
           Leapwork controller port: <strong><props:displayValue name="${constants.ParameterName_Port}" /></strong>
           Access key: <strong><props:displayValue name="${constants.ParameterName_AccessKey}" /></strong>
           Report File: <strong><props:displayValue name="${constants.ParameterName_Report}" /></strong>
           Time Delay (in seconds): <strong><props:displayValue name="${constants.ParameterName_TimeDelay}" /></strong>
+          Enable HTTPS Protocol: <strong><props:displayValue name="${constants.ParameterName_HTTPS}" /></strong>
           Done status value: <strong><props:displayValue name="${constants.ParameterName_DoneStatus}" /></strong>
           Write keyframes for passed flows to report? <strong><props:displayValue name="${constants.ParameterName_PassedKeyframes}" /></strong>
           Schedule Variables: <strong><props:displayValue name="${constants.ParameterName_ScheduleVariables}" /></strong>
