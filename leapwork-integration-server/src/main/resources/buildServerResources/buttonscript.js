@@ -9,7 +9,10 @@ function GetSch() {
           }
           else
           {
-			  const address = "http://" + leapworkHostname + ":" + leapworkPort;
+            let myAddress = "";
+            if(document.getElementById("leapworkHTTPS").checked){myAddress = "https://" + leapworkHostname + ":" + leapworkPort;}
+            else{myAddress = "http://" + leapworkHostname + ":" + leapworkPort;}
+            const address = myAddress;
               const accessKey = document.getElementById("leapworkAccessKey").value;
 
               if(document.getElementById('LeapworkContainer').innerHTML == "")

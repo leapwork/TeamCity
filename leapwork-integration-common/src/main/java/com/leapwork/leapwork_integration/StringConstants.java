@@ -3,6 +3,7 @@ package com.leapwork.leapwork_integration;
 
 public final class StringConstants {
     public static final String RunTypeName = "Leapwork Integration";
+    public static final String ParameterName_HTTPS ="leapworkHTTPS";
     public static final String ParameterName_Hostname = "leapworkHostname";
     public static final String ParameterName_Port = "leapworkPort";
     public static final String ParameterName_AccessKey= "leapworkAccessKey";
@@ -16,6 +17,7 @@ public final class StringConstants {
     public static final String ParameterName_ScheduleVariables = "leapworkScheduleVariables";
 
     // Getter methods for JSP pages
+    public String getParameterName_HTTPS(){return ParameterName_HTTPS;}
     public String getParameterName_Hostname(){return ParameterName_Hostname;}
     public String getParameterName_Port(){return ParameterName_Port;}
     public String getParameterName_AccessKey() {return ParameterName_AccessKey;}

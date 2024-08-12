@@ -4,7 +4,7 @@
       <jsp:useBean id="constants" class="com.leapwork.leapwork_integration.StringConstants" />
 
       <div class="parameter">
-
+          Enable HTTPS Protocol: <strong><props:displayValue name="${constants.ParameterName_HTTPS}" /></strong>
           Leapwork controller hostname: <strong><props:displayValue name="${constants.ParameterName_Hostname}" /></strong>
           Leapwork controller port: <strong><props:displayValue name="${constants.ParameterName_Port}" /></strong>
           Access key: <strong><props:displayValue name="${constants.ParameterName_AccessKey}" /></strong>

@@ -107,8 +107,13 @@ public class LeapworkTeamCityBridgeRunType extends RunType {
 		sb.append(parameters.get(StringConstants.ParameterName_ScheduleNames));
 		sb.append("\nSchedule Ids: ");
 		sb.append(parameters.get(StringConstants.ParameterName_ScheduleIds));
-		String urlValue = "http://".concat(parameters.get(StringConstants.ParameterName_Hostname))
+		String urlValue = "";
+		if(Utils.defaultBooleanIfNull(parameters.get(StringConstants.ParameterName_HTTPS),false))
+		urlValue =	"https://".concat(parameters.get(StringConstants.ParameterName_Hostname))
 				+ ":".concat(parameters.get(StringConstants.ParameterName_Port)) + "/api/v4/schedules";
+		else
+			urlValue =	"http://".concat(parameters.get(StringConstants.ParameterName_Hostname))
+			+ ":".concat(parameters.get(StringConstants.ParameterName_Port)) + "/api/v4/schedules";
 		cspConfiguration.addDirectiveItems("connect-src", urlValue);
 		return sb.toString();
 	}
