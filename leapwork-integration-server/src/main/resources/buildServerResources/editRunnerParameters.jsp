@@ -12,7 +12,13 @@
 
 
 <l:settingsGroup title="Runner Parameters">
-
+<tr>
+    <td>
+        <props:checkboxProperty name="${constants.parameterName_HTTPS}" />
+         <label for="${constants.parameterName_HTTPS}">Enable HTTPS Protocol</label>
+        <span class="error" id="error_${constants.parameterName_HTTPS}"></span>
+    </td>    
+</tr>
         <tr>
                 <th><label>Leapwork Controller Hostname:</label></th>
                 <td>
