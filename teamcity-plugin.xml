@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <teamcity-plugin xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:schemas-jetbrains-com:teamcity-plugin-v1-xml">
   <info>
-    <name>leapwork-integration</name>
-    <display-name>leapwork-integration</display-name>
+    <name>Leapwork</name>
+    <display-name>Leapwork</display-name>
     <version>4.0.4</version>
     <description>Integrates Leapwork codeless test automation with Teamcity. Run tests, get results, generate reports.</description>
     <download-url>https://github.com/leapwork/TeamCity.git/archive/master.zip</download-url>
